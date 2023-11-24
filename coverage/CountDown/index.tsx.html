@@ -22,16 +22,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.33% </span>
+                <span class="strong">56% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/24</span>
+                <span class='fraction'>14/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">7.69% </span>
+                <span class="strong">6.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/13</span>
+                <span class='fraction'>1/15</span>
             </div>
         
             
@@ -43,9 +43,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.54% </span>
+                <span class="strong">52.17% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/22</span>
+                <span class='fraction'>12/23</span>
             </div>
         
             
@@ -157,7 +157,14 @@
 <a name='L93'></a><a href='#L93'>93</a>
 <a name='L94'></a><a href='#L94'>94</a>
 <a name='L95'></a><a href='#L95'>95</a>
-<a name='L96'></a><a href='#L96'>96</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -182,6 +189,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -193,6 +201,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -212,12 +221,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -272,6 +286,7 @@ type Props = {
  */
 const calculateTimeLeft = <span class="fstat-no" title="function not covered" >(d</span>ate: string, setTime: Function, timeLeft: Object = <span class="branch-0 cbranch-no" title="branch not covered" >{})</span> =&gt; {
     const difference = <span class="cstat-no" title="statement not covered" >+new Date(date) - +new Date();</span>
+    const years = <span class="cstat-no" title="statement not covered" >Math.floor(difference / (1000 * 60 * 60 * 24 * 30 * 12));</span>
     const months = <span class="cstat-no" title="statement not covered" >Math.floor((difference / (1000 * 60 * 60 * 24 * 30)) % 12);</span>
     const days = <span class="cstat-no" title="statement not covered" >Math.floor((difference / (1000 * 60 * 60 * 24)) % 30);</span>
     const hours = <span class="cstat-no" title="statement not covered" >Math.floor((difference / (1000 * 60 * 60)) % 24);</span>
@@ -280,6 +295,7 @@ const calculateTimeLeft = <span class="fstat-no" title="function not covered" >(
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (difference &gt; 0) {</span>
 <span class="cstat-no" title="statement not covered" >        setTime({</span>
+            years: years &lt; 10 ? `0${years}` : years,
             months: months &lt; 10 ? `0${months}` : months,
             days: days &lt; 10 ? `0${days}` : days,
             hours: hours &lt; 10 ? `0${hours}` : hours,
@@ -300,6 +316,7 @@ const calculateTimeLeft = <span class="fstat-no" title="function not covered" >(
 const CountDown = ({ date: dateProvided, caption }: Props) =&gt; {
     const { formatMessage: f } = useIntl();
     const [time, setTime] = React.useState({
+        years: 0,
         months: 0,
         days: 0,
         hours: 0,
@@ -319,6 +336,10 @@ const CountDown = ({ date: dateProvided, caption }: Props) =&gt; {
         &lt;Tooltip&gt;
             &lt;Tooltip.Trigger&gt;
                 &lt;div className={styles.countdown} data-testid="countdown"&gt;
+                    &lt;div className={styles.countdown__item}&gt;
+                        &lt;div suppressHydrationWarning&gt;{time.years}&lt;/div&gt;
+                        &lt;div className={styles.countdown__item__text}&gt;{f({ id: 'countdown.years' })}&lt;/div&gt;
+                    &lt;/div&gt;
                     &lt;div className={styles.countdown__item}&gt;
                         &lt;div suppressHydrationWarning&gt;{time.months}&lt;/div&gt;
                         &lt;div className={styles.countdown__item__text}&gt;{f({ id: 'countdown.months' })}&lt;/div&gt;
@@ -352,7 +373,7 @@ export default CountDown;
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage automatically generated by Xabier Lameiro on 8/2/2023, 4:45:47 AM
+                Code coverage automatically generated by Xabier Lameiro on 11/24/2023, 4:55:22 PM
         <script src="../prettify.js"></script>
         <script>
             window.onload = function () {
