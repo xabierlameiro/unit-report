@@ -31,7 +31,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -131,9 +131,7 @@
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -174,9 +172,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -208,7 +204,7 @@
 import styles from './weather.module.css';
 import Img from 'next/image';
 import News from '@/components/News';
-import useWeather from '@/hooks/useWeather';
+import useWeather, { type WeatherData } from '@/hooks/useWeather';
 import RenderManager from '@/components/RenderManager';
 import { GrFormClose } from 'react-icons/gr';
 import { clx } from '@/helpers';
@@ -243,23 +239,22 @@ const Weather = ({ cities, open, handleClose }: { cities: string[]; open?: boole
                 errorTitle={f({ id: 'weather.error' })}
                 loadingTitle={f({ id: 'weather.loading' })}
             &gt;
-                &lt;&gt;
-                    {data &amp;&amp;
-                        data?.map((city: any, index: any) =&gt; (
-                            &lt;div className={styles.city} key={`${city?.city}+${index}`}&gt;
-                                &lt;div className={styles.weather}&gt;
-                                    &lt;div className={styles.cityName}&gt;{city?.city?.replace(/\+/g, ' ')}&lt;/div&gt;
-                                    &lt;div className={styles.cityGrade}&gt;{`${city?.grades} ºC | ºF`}&lt;/div&gt;
-                                    {city?.imageUrl &amp;&amp; (
-                                        &lt;Img src={city?.imageUrl} width={70} height={70} alt={city?.name} /&gt;
-                                    )}
-                                    &lt;div className={styles.info}&gt;
-                                        &lt;div className={styles.cityPrecipitation}&gt;
-                                            {f({ id: 'weather.precipitation' }, { precipitation: city?.precipitation })}
-                                        &lt;/div&gt;
-                                        &lt;div className={styles.cityHumidity}&gt;
-                                            {f({ id: 'weather.humidity' }, { humidity: city?.humidity })}
-                                        &lt;/div&gt;
+                {data
+                    ?.map((city: WeatherData, index: number) =&gt; (
+                        &lt;div className={styles.city} key={`${city?.city}-${city?.name}-${index}`}&gt;
+                            &lt;div className={styles.weather}&gt;
+                                &lt;div className={styles.cityName}&gt;{city?.city?.replace(/\+/g, ' ')}&lt;/div&gt;
+                                &lt;div className={styles.cityGrade}&gt;{`${city?.grades} ºC | ºF`}&lt;/div&gt;
+                                {city?.imageUrl &amp;&amp; (
+                                    &lt;Img src={city?.imageUrl} width={70} height={70} alt={city?.name} /&gt;
+                                )}
+                                &lt;div className={styles.info}&gt;
+                                    &lt;div className={styles.cityPrecipitation}&gt;
+                                        {f({ id: 'weather.precipitation' }, { precipitation: city?.precipitation })}
+                                    &lt;/div&gt;
+                                    &lt;div className={styles.cityHumidity}&gt;
+                                        {f({ id: 'weather.humidity' }, { humidity: city?.humidity })}
+                                    &lt;/div&gt;
                                         &lt;div className={styles.cityWindSpeed}&gt;
                                             {f({ id: 'weather.windSpeed' }, { windSpeed: city?.windSpeed })}
                                         &lt;/div&gt;
@@ -268,7 +263,6 @@ const Weather = ({ cities, open, handleClose }: { cities: string[]; open?: boole
                                 {city?.city &amp;&amp; &lt;News city={city.city} /&gt;}
                             &lt;/div&gt;
                         ))}
-                &lt;/&gt;
             &lt;/RenderManager&gt;
         &lt;/Container&gt;
     );
@@ -280,7 +274,7 @@ export default Weather;
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage automatically generated by Xabier Lameiro on 7/23/2025, 11:44:59 AM
+                Code coverage automatically generated by Xabier Lameiro on 7/23/2025, 4:24:29 PM
         <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {

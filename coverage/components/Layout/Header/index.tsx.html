@@ -22,9 +22,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.68% </span>
+                <span class="strong">92.85% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>38/41</span>
+                <span class='fraction'>39/42</span>
             </div>
         
             
@@ -43,9 +43,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.3% </span>
+                <span class="strong">92.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>36/39</span>
+                <span class='fraction'>37/40</span>
             </div>
         
             
@@ -198,7 +198,11 @@
 <a name='L134'></a><a href='#L134'>134</a>
 <a name='L135'></a><a href='#L135'>135</a>
 <a name='L136'></a><a href='#L136'>136</a>
-<a name='L137'></a><a href='#L137'>137</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -234,6 +238,10 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -244,7 +252,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -369,6 +377,10 @@ const DateAndHour = ({ children, minutes = 1 }: { children?: ReactNode; minutes?
     const month = date.toLocaleDateString(locale, { month: 'short' });
     const hour = date.toLocaleTimeString(locale, { hour: 'numeric', minute: 'numeric' });
 &nbsp;
+    const handleWeatherClick = React.useCallback(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        setOpenWeatherWidget(true);</span>
+    }, []);
+&nbsp;
     React.useEffect(() =&gt; {
         const interval = setInterval(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >            setDate(new Date());</span>
@@ -380,12 +392,12 @@ const DateAndHour = ({ children, minutes = 1 }: { children?: ReactNode; minutes?
         &lt;div&gt;
             &lt;Tooltip&gt;
                 &lt;Tooltip.Trigger&gt;
-                    &lt;div className={styles.dateAndHour} onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >s</span>etOpenWeatherWidget(true)}&gt;</span>
+                    &lt;button type="button" className={styles.dateAndHour} onClick={handleWeatherClick}&gt;
                         &lt;span suppressHydrationWarning&gt;{day}&lt;/span&gt;
                         &lt;span suppressHydrationWarning&gt;{dayNumber}&lt;/span&gt;
                         &lt;span suppressHydrationWarning&gt;{month}&lt;/span&gt;
                         &lt;span suppressHydrationWarning&gt;{hour}&lt;/span&gt;
-                    &lt;/div&gt;
+                    &lt;/button&gt;
                 &lt;/Tooltip.Trigger&gt;
                 &lt;Tooltip.Content&gt;{f({ id: 'weather.tooltip' })}&lt;/Tooltip.Content&gt;
             &lt;/Tooltip&gt;
@@ -455,7 +467,7 @@ const Header = ({ children }: { children?: ReactNode }) =&gt; {
             &lt;SiBitcoincash /&gt;
             &lt;Route /&gt;
             &lt;NavLinks /&gt;
-            &lt;CountDown date="2025-04-28T00:00:00+00:00" caption={f({ id: 'countdown.caption' })} /&gt;
+            &lt;CountDown date="2025-11-14T00:00:00+00:00" caption={f({ id: 'countdown.caption' })} /&gt;
             &lt;DeploymentStatus /&gt;
             &lt;CryptoPrice /&gt;
             &lt;IndexedCounter /&gt;
@@ -475,7 +487,7 @@ export default Header;
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage automatically generated by Xabier Lameiro on 7/23/2025, 11:44:59 AM
+                Code coverage automatically generated by Xabier Lameiro on 7/23/2025, 4:24:29 PM
         <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
