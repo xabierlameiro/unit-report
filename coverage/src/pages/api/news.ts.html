@@ -22,16 +22,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.84% </span>
+                <span class="strong">82.97% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>33/38</span>
+                <span class='fraction'>39/47</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">77.27% </span>
+                <span class="strong">73.07% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>17/22</span>
+                <span class='fraction'>19/26</span>
             </div>
         
             
@@ -43,9 +43,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.48% </span>
+                <span class="strong">82.6% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>32/37</span>
+                <span class='fraction'>38/46</span>
             </div>
         
             
@@ -60,7 +60,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -167,11 +167,29 @@
 <a name='L103'></a><a href='#L103'>103</a>
 <a name='L104'></a><a href='#L104'>104</a>
 <a name='L105'></a><a href='#L105'>105</a>
-<a name='L106'></a><a href='#L106'>106</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -185,6 +203,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -215,7 +236,18 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -267,7 +299,9 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -276,6 +310,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import jsdom from 'jsdom';
 import allowCors from '../../helpers/cors';
+import { CACHE, fetchWithTimeout } from '@/helpers/http';
 import { isValidCityName } from '../../helpers/city';
 &nbsp;
 interface NewsItem {
@@ -293,6 +328,9 @@ interface NewsData {
 type NewsResponse = NewsData | { error: string };
 &nbsp;
 const MAX_NEWS_ITEMS = 10;
+&nbsp;
+/** Google News RSS for one city runs well under 100 KB; 2 MB is a generous ceiling, not a target. */
+const MAX_FEED_BYTES = 2 * 1024 * 1024;
 &nbsp;
 /**
  * @description Get the latest news for a city from the Google News RSS feed.
@@ -312,7 +350,7 @@ const getCityNews = async (city: string): Promise&lt;NewsData&gt; =&gt; {
     url.searchParams.set('gl', 'US');
     url.searchParams.set('ceid', 'US:en');
 &nbsp;
-    const response = await fetch(url.toString(), {
+    const response = await fetchWithTimeout(url.toString(), {
         headers: { accept: 'application/rss+xml, application/xml, text/xml' },
         redirect: 'follow',
     });
@@ -320,7 +358,18 @@ const getCityNews = async (city: string): Promise&lt;NewsData&gt; =&gt; {
 <span class="cstat-no" title="statement not covered" >        throw new Error(`News RSS HTTP error! status: ${response.status}`);</span>
     }
 &nbsp;
+    // Cap the body before it reaches JSDOM. `response.text()` was unbounded and fed straight into an
+    // XML parse, so a large or slow feed turned each request into a multi-second CPU-and-memory burn —
+    // a cheap path to function timeouts once someone noticed the endpoint was uncached.
+    const declaredLength = Number(response.headers.get('content-length') ?? 0);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (declaredLength &gt; MAX_FEED_BYTES) {
+<span class="cstat-no" title="statement not covered" >        throw new Error(`News RSS response too large: ${declaredLength} bytes`);</span>
+    }
+&nbsp;
     const raw = await response.text();
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (raw.length &gt; MAX_FEED_BYTES) {
+<span class="cstat-no" title="statement not covered" >        throw new Error(`News RSS response too large: ${raw.length} bytes`);</span>
+    }
     const { JSDOM } = jsdom;
     const document = new JSDOM(raw, { contentType: 'text/xml' }).window.document;
 &nbsp;
@@ -371,9 +420,11 @@ export default allowCors(async function handler(req: NextApiRequest, res: NextAp
 &nbsp;
     try {
         const data = await getCityNews(city);
+        res.setHeader('Cache-Control', CACHE.news);
         res.status(200).json(data);
     } catch (error) {
 <span class="cstat-no" title="statement not covered" >        console.error('News API Error:', error);</span>
+<span class="cstat-no" title="statement not covered" >        res.setHeader('Cache-Control', CACHE.error);</span>
 <span class="cstat-no" title="statement not covered" >        res.status(500).json({ error: 'Internal server error' });</span>
     }
 });
@@ -382,7 +433,7 @@ export default allowCors(async function handler(req: NextApiRequest, res: NextAp
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage automatically generated by Xabier Lameiro on 7/26/2026, 3:03:04 AM
+                Code coverage automatically generated by Xabier Lameiro on 7/26/2026, 3:34:48 AM
         <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {

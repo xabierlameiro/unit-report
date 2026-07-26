@@ -24,14 +24,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/24</span>
+                <span class='fraction'>28/28</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
@@ -45,7 +45,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>22/22</span>
+                <span class='fraction'>26/26</span>
             </div>
         
             
@@ -137,7 +137,20 @@
 <a name='L73'></a><a href='#L73'>73</a>
 <a name='L74'></a><a href='#L74'>74</a>
 <a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -186,6 +199,7 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -200,6 +214,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -208,12 +223,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { NextApiRequest, NextApiResponse } from 'next';
 import allowCors from '../../helpers/cors';
+import { CACHE, fetchWithTimeout } from '@/helpers/http';
 &nbsp;
 export type DeploymentStatus = 'BUILDING' | 'ERROR' | 'INITIALIZING' | 'QUEUED' | 'READY' | 'CANCELED';
 export type DeploymentEnvironment = 'production' | 'preview';
@@ -244,7 +269,7 @@ const fetchLatestDeployment = async (projectId: string, target: string, token: s
     url.searchParams.set('target', target);
     url.searchParams.set('limit', '1');
 &nbsp;
-    const result = await fetch(url.toString(), {
+    const result = await fetchWithTimeout(url.toString(), {
         headers: { Authorization: `Bearer ${token}` },
         method: 'get',
     });
@@ -260,6 +285,7 @@ export default allowCors(async function handler(
     const missingEnv = REQUIRED_ENV.filter((name) =&gt; !process.env[name]);
     if (missingEnv.length &gt; 0) {
         console.error(`Missing required environment variables for Vercel API: ${missingEnv.join(', ')}`);
+        res.setHeader('Cache-Control', CACHE.error);
         return res.status(500).json({ error: 'Configuration error' });
     }
 &nbsp;
@@ -274,17 +300,27 @@ export default allowCors(async function handler(
             throw new Error('No deployment found');
         }
 &nbsp;
+        res.setHeader('Cache-Control', CACHE.deployment);
         return res.status(200).json({
             status: deployment.state,
             environment: process.env.NEXT_PUBLIC_ENV as DeploymentEnvironment,
             createdAt: deployment.createdAt,
             buildingAt: deployment.buildingAt,
             ready: deployment.ready,
+            // Kept deliberately. The audit flagged it as reconnaissance, but DeploymentStatus renders
+            // it in the widget tooltip, and the value is the owner's own account name — already public
+            // as the org in this repository's URL. Removing it would break a feature to hide
+            // something that is not hidden.
             username: deployment.creator?.username,
         });
     } catch (err: unknown) {
-        const errorMessage = err instanceof Error ? err.message : <span class="branch-1 cbranch-no" title="branch not covered" >'Unknown error occurred';</span>
-        return res.status(500).json({ error: errorMessage });
+        // Was `err.message`, the only route of eight that echoed internal error text to the client.
+        // A non-JSON Vercel error page surfaces a SyntaxError carrying a fragment of the upstream
+        // body, and a fetch failure surfaces Node's internal text — an uncontrolled channel from
+        // server internals to an anonymous caller.
+        console.error('Deployments API Error:', err);
+        res.setHeader('Cache-Control', CACHE.error);
+        return res.status(500).json({ error: 'Internal server error' });
     }
 });
 &nbsp;</pre></td></tr></table></pre>
@@ -292,7 +328,7 @@ export default allowCors(async function handler(
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage automatically generated by Xabier Lameiro on 7/26/2026, 3:03:04 AM
+                Code coverage automatically generated by Xabier Lameiro on 7/26/2026, 3:34:48 AM
         <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
