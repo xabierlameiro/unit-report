@@ -24,14 +24,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
@@ -45,7 +45,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -98,7 +98,36 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -121,7 +150,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -144,6 +202,8 @@ type Props = {
     name: string;
     horizontal?: boolean;
     onClick?: () =&gt; void;
+    /** Reflects on/off state to assistive tech when this acts as a toggle (e.g. the theme switch). */
+    pressed?: boolean;
 };
 &nbsp;
 /**
@@ -155,18 +215,45 @@ type Props = {
  * @param {string} alt - The alt text for the icon
  * @param {string} name - Text to display
  * @param {boolean} horizontal - If true, the icon will be displayed horizontally
+ * @param {Function} onClick - Makes this a button; omit it for a static tile
+ * @param {boolean} pressed - Toggle state, forwarded as aria-pressed
  * @returns {JSX.Element}
  */
-const IconWithName = ({ icon, alt, name, horizontal, onClick }: Props) =&gt; {
-    return (
-        &lt;div
-            data-testid="icon-with-name"
-            className={clx(styles.option, horizontal ? <span class="branch-0 cbranch-no" title="branch not covered" >styles.horizontal </span>: '')}
-            onClick={onClick}
-        &gt;
+const IconWithName = ({ icon, alt, name, horizontal, onClick, pressed }: Props) =&gt; {
+    const className = clx(styles.option, horizontal ? <span class="branch-0 cbranch-no" title="branch not covered" >styles.horizontal </span>: '');
+    const content = (
+        &lt;&gt;
             &lt;Image src={icon} alt={alt} width={44} height={44} /&gt;
             &lt;p className={styles.optionText}&gt;{name}&lt;/p&gt;
-        &lt;/div&gt;
+        &lt;/&gt;
+    );
+&nbsp;
+    /**
+     * SDD-L05: a `&lt;div onClick&gt;` with no role, tabIndex or key handler. It backs the theme and language
+     * tiles on /settings — the two things that page exists to do — so neither could be operated without
+     * a mouse.
+     *
+     * A `&lt;button&gt;` only when there is something to activate: a static tile should not take a tab stop
+     * or announce itself as pressable.
+     */
+    if (!onClick) {
+        return (
+            &lt;div data-testid="icon-with-name" className={className}&gt;
+                {content}
+            &lt;/div&gt;
+        );
+    }
+&nbsp;
+    return (
+        &lt;button
+            type="button"
+            data-testid="icon-with-name"
+            className={className}
+            onClick={onClick}
+            aria-pressed={pressed}
+        &gt;
+            {content}
+        &lt;/button&gt;
     );
 };
 export default IconWithName;
@@ -175,7 +262,7 @@ export default IconWithName;
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage automatically generated by Xabier Lameiro on 7/26/2026, 4:29:28 AM
+                Code coverage automatically generated by Xabier Lameiro on 7/26/2026, 9:38:19 AM
         <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
