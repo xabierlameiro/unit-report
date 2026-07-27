@@ -24,7 +24,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>0/13</span>
             </div>
         
             
@@ -45,7 +45,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
@@ -123,35 +123,31 @@
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -174,6 +170,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -184,12 +183,41 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { remarkCodeHike } from <span class="cstat-no" title="statement not covered" >'@code-hike/mdx';</span>
-import remarkGfm from <span class="cstat-no" title="statement not covered" >'remark-gfm';</span>
-import theme from <span class="cstat-no" title="statement not covered" >'shiki/themes/one-dark-pro.json' with { type: 'json' };</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { remarkPlugins } from <span class="cstat-no" title="statement not covered" >'../../mdx.plugins.ts';</span>
 import { serialize as sz } from <span class="cstat-no" title="statement not covered" >'next-mdx-remote/serialize';</span>
 import path from <span class="cstat-no" title="statement not covered" >'path';</span>
 import fs from <span class="cstat-no" title="statement not covered" >'fs';</span>
+&nbsp;
+/**
+ * SDD-L09-T8. The remark plugin array, in one place.
+ *
+ * It was duplicated verbatim between `serialize` and `serializePath`, and the comment on each copy
+ * said "See serializePath" — so the duplication had been noticed and documented rather than removed.
+ * Two copies of a plugin array is how the two MDX pipelines in this repo came to disagree about GFM:
+ * `@next/mdx` compiles `.mdx` **pages** without remark-gfm, while `next-mdx-remote` compiles blog
+ * posts with it, so a table renders in one and as literal pipe characters in the other, and an
+ * author cannot tell which rules apply to the file in front of them.
+ *
+ * `next.config.js` imports the same constant, which is what makes the two pipelines agree.
+ *
+ * The options below are what both entry points pass to next-mdx-remote.
+ *
+ * MDX content is first-party (authored in this repo), so JS expressions are trusted.
+ * next-mdx-remote v6 blocks them by default, which breaks Code Hike's compiled output; JS is
+ * re-enabled while the guard against dangerous globals (eval/Function/require/...) stays on.
+ */
+const serializeOptions = <span class="cstat-no" title="statement not covered" >{</span>
+    blockJS: false,
+    blockDangerousJS: true,
+    mdxOptions: {
+        // next-mdx-remote compiles a fragment: `CH` arrives via the components prop, not an import.
+        remarkPlugins: remarkPlugins({ autoImport: false }),
+        useDynamicImport: true,
+    },
+};
 &nbsp;
 /**
  * @description Serialize MDX file.
@@ -206,21 +234,7 @@ export const <span class="cstat-no" title="statement not covered" >serializePath
     const filePath = <span class="cstat-no" title="statement not covered" >path.join(route, fileName);</span>
     const mdx = <span class="cstat-no" title="statement not covered" >fs.readFileSync(filePath, 'utf8');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return sz(mdx, {</span>
-        // MDX content is first-party (authored in this repo), so JS expressions
-        // are trusted. next-mdx-remote v6 blocks them by default, which breaks
-        // Code Hike's compiled output; re-enable JS while keeping the guard
-        // against dangerous globals (eval/Function/require/...).
-        blockJS: false,
-        blockDangerousJS: true,
-        mdxOptions: {
-            // GFM tables/autolinks are not CommonMark — without remark-gfm the pipes
-            // render as plain text. singleTilde off so "~1M"-style approximations in
-            // prose can never pair up into accidental strikethrough.
-            remarkPlugins: [[remarkGfm, { singleTilde: false }], [remarkCodeHike, { autoImport: false, theme }]],
-            useDynamicImport: true,
-        },
-    });
+<span class="cstat-no" title="statement not covered" >    return sz(mdx, serializeOptions);</span>
 };
 &nbsp;
 /**
@@ -233,24 +247,13 @@ export const <span class="cstat-no" title="statement not covered" >serializePath
  * @param {string} mdx - MDX file.
  * @returns {Object} - Object with MDX content and meta data.
  */
-export const <span class="cstat-no" title="statement not covered" >serialize = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>m</span>dx: string) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >    sz(mdx, {</span>
-        // See serializePath: trusted first-party MDX, so allow JS expressions
-        // (required by Code Hike) while blocking dangerous globals.
-        blockJS: false,
-        blockDangerousJS: true,
-        mdxOptions: {
-            // See serializePath: GFM support with singleTilde disabled.
-            remarkPlugins: [[remarkGfm, { singleTilde: false }], [remarkCodeHike, { autoImport: false, theme }]],
-            useDynamicImport: true,
-        },
-    });
+export const <span class="cstat-no" title="statement not covered" >serialize = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>m</span>dx: string) =&gt; <span class="cstat-no" title="statement not covered" >sz(mdx, serializeOptions);</span></span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage automatically generated by Xabier Lameiro on 7/26/2026, 9:38:19 AM
+                Code coverage automatically generated by Xabier Lameiro on 7/27/2026, 7:15:43 AM
         <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {

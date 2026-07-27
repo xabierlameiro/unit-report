@@ -22,16 +22,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.57% </span>
+                <span class="strong">89.18% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>31/35</span>
+                <span class='fraction'>33/37</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.68% </span>
+                <span class="strong">78.94% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>14/19</span>
+                <span class='fraction'>15/19</span>
             </div>
         
             
@@ -43,9 +43,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">88.23% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>28/32</span>
+                <span class='fraction'>30/34</span>
             </div>
         
             
@@ -164,7 +164,15 @@
 <a name='L100'></a><a href='#L100'>100</a>
 <a name='L101'></a><a href='#L101'>101</a>
 <a name='L102'></a><a href='#L102'>102</a>
-<a name='L103'></a><a href='#L103'>103</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -228,7 +236,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">20x</span>
@@ -269,6 +283,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useRouter } from 'next/router';
 import { useMemo, useReducer } from 'react';
 import { buildSurveyQuestions, sanitizeSurveyName, DEFAULT_SURVEY_NAME, type Question } from '@/constants/survey';
+import surveyCopy from '../intl/survey';
 &nbsp;
 interface Answer {
     question: string;
@@ -329,13 +344,19 @@ const reducer = (state: SurveyState, action: SurveyAction): SurveyState =&gt; {
 };
 &nbsp;
 const useSurvey = () =&gt; {
-    const { query } = useRouter();
-    const rawName = Array.isArray(query.name) ? <span class="branch-0 cbranch-no" title="branch not covered" >query.name[0] </span>: query.name ?? <span class="branch-1 cbranch-no" title="branch not covered" >DEFAULT_SURVEY_NAME;</span>
+    const { query, locale } = useRouter();
+    // SDD-L07: the default only covered the non-array branch. `?name=` repeated in the query string
+    // gives Next an array, and an empty one gives `undefined` — which then reached
+    // `sanitizeSurveyName` as a string it was not typed to receive.
+    const rawName = (Array.isArray(query.name) ? <span class="branch-0 cbranch-no" title="branch not covered" >query.name[0] </span>: query.name) ?? DEFAULT_SURVEY_NAME;
     const name = sanitizeSurveyName(rawName);
+    // SDD-L08-T7: the whole questionnaire was Spanish literals. The copy now follows the route's
+    // locale; which answers count as a match does not, and stays in constants/survey.tsx.
+    const copy = surveyCopy(locale);
 &nbsp;
     const [state, dispatch] = useReducer(reducer, initialState);
 &nbsp;
-    const questions = useMemo(() =&gt; buildSurveyQuestions(name, state.success), [name, state.success]);
+    const questions = useMemo(() =&gt; buildSurveyQuestions(name, state.success, copy), [name, state.success, copy]);
 &nbsp;
     const handlePreviousQuestion = () =&gt; {
         if (state.currentQuestion &gt; 1) dispatch({ type: 'PREVIOUS_QUESTION' });
@@ -373,7 +394,7 @@ export type { Question };
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage automatically generated by Xabier Lameiro on 7/26/2026, 9:38:19 AM
+                Code coverage automatically generated by Xabier Lameiro on 7/27/2026, 7:15:43 AM
         <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {

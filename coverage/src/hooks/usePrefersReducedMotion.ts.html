@@ -18,34 +18,34 @@
     
 <body>
 <div class='wrapper'>
-    <div class='pad1'><h1><a href='/'>Return</a></h1></h1><h1><a href='/'>All tests</a></a> / <a href="index.html">src/helpers</a> searchConsole.ts</h1>
+    <div class='pad1'><h1><a href='/'>Return</a></h1></h1><h1><a href='/'>All tests</a></a> / <a href="index.html">src/hooks</a> usePrefersReducedMotion.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
@@ -88,23 +88,19 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -113,33 +109,52 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { google, webmasters_v3 } from 'googleapis';
-&nbsp;
-export const SITE_URL = 'sc-domain:xabierlameiro.com';
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 &nbsp;
 /**
- * @description Build an authenticated Search Console (webmasters v3) client using the
- * shared analytics service account. Returns null when the credentials are absent so
- * callers can degrade gracefully instead of throwing.
+ * @description Whether the visitor has asked their OS to reduce motion.
  *
- * @returns {webmasters_v3.Webmasters | null} - Authenticated client, or null if unconfigured
+ * SDD-L06. The global `@media (prefers-reduced-motion: reduce)` block in globals.css covers CSS
+ * animations and transitions, but it cannot reach motion that JavaScript paints — the survey's
+ * confetti is a canvas driven by a timer, so the only way to stop it is not to render it.
+ *
+ * Starts `false` and resolves after mount, deliberately: reading `matchMedia` during render would
+ * make the server and client markup disagree. Erring toward "motion allowed" for one frame is the
+ * safe direction — the alternative would flash content off for everyone.
+ *
+ * @returns {boolean} True when the reduce-motion preference is set.
  */
-export const getSearchConsoleClient = (): webmasters_v3.Webmasters | null =&gt; {
-    if (!process.env.ANALYTICS_CLIENT_EMAIL || !process.env.ANALYTICS_PRIVATE_KEY) {
-        return null;
-    }
+const usePrefersReducedMotion = (): boolean =&gt; {
+    const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(false);
 &nbsp;
-    const auth = new google.auth.GoogleAuth({
-        credentials: {
-            client_email: process.env.ANALYTICS_CLIENT_EMAIL,
-            private_key: process.env.ANALYTICS_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-        },
-        scopes: 'https://www.googleapis.com/auth/webmasters.readonly',
-    });
+    React.useEffect(() =&gt; {
+        const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+        setPrefersReducedMotion(query.matches);
 &nbsp;
-    return google.webmasters({ version: 'v3', auth });
+        const onChange = (event: MediaQueryListEvent) =&gt; setPrefersReducedMotion(event.matches);
+        query.addEventListener('change', onChange);
+        return () =&gt; query.removeEventListener('change', onChange);
+    }, []);
+&nbsp;
+    return prefersReducedMotion;
 };
+&nbsp;
+export default usePrefersReducedMotion;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

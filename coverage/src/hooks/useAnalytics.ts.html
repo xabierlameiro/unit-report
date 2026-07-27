@@ -22,30 +22,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.47% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>19/21</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/9</span>
+                <span class='fraction'>7/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/20</span>
+                <span class='fraction'>17/17</span>
             </div>
         
             
@@ -112,7 +112,11 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,43 +132,45 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
+import createFetcher from '@/helpers/createFetcher';
+import { analyticsSchema } from '../types/schemas';
 import type { AnalyticsData } from '../types/api';
 &nbsp;
 const initialValues: AnalyticsData = {
@@ -172,24 +178,24 @@ const initialValues: AnalyticsData = {
     newUsers: 0,
 };
 &nbsp;
+/**
+ * SDD-L07: `error` was declared `boolean` here and in every sibling hook. SWR types its response as
+ * `SWRResponse&lt;Data, Error&gt;` with `Error` defaulting to `any` when only the first generic is given,
+ * and `any` assigns to `boolean` without complaint. So the declaration said boolean, an `Error`
+ * object flowed, and every widget could show only one undifferentiated error icon — a boolean cannot
+ * express anything else.
+ */
 type ReturnType = {
     data: AnalyticsData;
-    error: boolean;
+    error: Error | undefined;
     loading: boolean;
 };
 &nbsp;
-const fetchAnalytics = async (url: string): Promise&lt;AnalyticsData&gt; =&gt; {
-    const response = await fetch(url);
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (!response.ok) {
-<span class="cstat-no" title="statement not covered" >        throw new Error(`Failed to fetch analytics data: ${response.statusText}`);</span>
-    }
-    const data = await response.json();
-<span class="cstat-no" title="statement not covered" >    return data as AnalyticsData;</span>
-};
+const fetchAnalytics = createFetcher(analyticsSchema, '/api/analytics');
 &nbsp;
 const useAnalytics = (all?: boolean): ReturnType =&gt; {
     const { asPath, locale } = useRouter();
-    const slug = locale === 'en' ? <span class="branch-0 cbranch-no" title="branch not covered" >asPath : `</span>/${locale}${asPath}`;
+    const slug = locale === 'en' ? asPath : `/${locale}${asPath}`;
 &nbsp;
     const memoUrl = React.useMemo(() =&gt; {
         const url = new URL(`${process.env.NEXT_PUBLIC_DOMAIN}/api/analytics`);
@@ -197,7 +203,7 @@ const useAnalytics = (all?: boolean): ReturnType =&gt; {
         return url.toString();
     }, [all, slug]);
 &nbsp;
-    const { data, error, isLoading } = useSWR&lt;AnalyticsData&gt;(memoUrl, fetchAnalytics, {
+    const { data, error, isLoading } = useSWR&lt;AnalyticsData, Error&gt;(memoUrl, fetchAnalytics, {
         keepPreviousData: all ? true : false,
         fallback: initialValues,
         fallbackData: initialValues,
@@ -217,7 +223,7 @@ export default useAnalytics;
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage automatically generated by Xabier Lameiro on 7/26/2026, 9:38:19 AM
+                Code coverage automatically generated by Xabier Lameiro on 7/27/2026, 7:15:43 AM
         <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {

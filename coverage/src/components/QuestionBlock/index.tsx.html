@@ -24,7 +24,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
@@ -45,7 +45,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -110,7 +110,23 @@
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,16 +144,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,8 +163,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import styles from '@/styles/survey.module.css';
 import type { Question } from '@/constants/survey';
@@ -178,30 +210,46 @@ type Props = {
 const QuestionBlock = ({ question, index, currentQuestionNum, answers, handleAnswerOptionClick }: Props) =&gt; {
     if (currentQuestionNum !== index) return null;
 &nbsp;
+    /**
+     * SDD-L06. Two defects here, both invisible to a sighted mouse user.
+     *
+     * The question was a bare `&lt;div&gt;` sitting beside the options rather than labelling them, so a
+     * screen reader announced "Frontend, radio button, 1 of 3" with no indication of what was being
+     * asked. `&lt;fieldset&gt;` + `&lt;legend&gt;` is the native way to say "these options answer this question".
+     *
+     * And `id`/`htmlFor` were the answer text itself. That text contains spaces
+     * ("Remoto 100% pero solo en España"), which is invalid in an id, and it repeats across
+     * questions — 'Si' appears in two, 'Lo desconozco' in three. `htmlFor` resolves to the *first*
+     * matching id in the document, so clicking a label could toggle another question's radio. The id
+     * is now derived from the question and option indices, which are unique by construction.
+     */
     return (
-        &lt;div data-testid="question-block" className={styles.question}&gt;
-            &lt;div&gt;{question.questionContent}&lt;/div&gt;
-            {question.answerOptions?.map((answerOption) =&gt; (
-                &lt;label htmlFor={answerOption.answerText} key={answerOption.answerText}&gt;
-                    &lt;input
-                        onChange={(e) =&gt;
-                            handleAnswerOptionClick({
-                                question: question.questionText || <span class="branch-1 cbranch-no" title="branch not covered" >'',</span>
-                                answer: e.target.value,
-                                isCorrect: answerOption.isCorrect,
-                                questionNum: index,
-                            })
-                        }
-                        type="radio"
-                        id={answerOption.answerText}
-                        name={String(index)}
-                        value={answerOption.answerText}
-                        checked={answers[index]?.answer === answerOption.answerText}
-                    /&gt;
-                    {answerOption.answerText}
-                &lt;/label&gt;
-            ))}
-        &lt;/div&gt;
+        &lt;fieldset data-testid="question-block" className={styles.question}&gt;
+            &lt;legend&gt;{question.questionContent}&lt;/legend&gt;
+            {question.answerOptions?.map((answerOption, optionIndex) =&gt; {
+                const optionId = `q${index}-a${optionIndex}`;
+                return (
+                    &lt;label htmlFor={optionId} key={optionId}&gt;
+                        &lt;input
+                            onChange={(e) =&gt;
+                                handleAnswerOptionClick({
+                                    question: question.questionText || <span class="branch-1 cbranch-no" title="branch not covered" >'',</span>
+                                    answer: e.target.value,
+                                    isCorrect: answerOption.isCorrect,
+                                    questionNum: index,
+                                })
+                            }
+                            type="radio"
+                            id={optionId}
+                            name={String(index)}
+                            value={answerOption.answerText}
+                            checked={answers[index]?.answer === answerOption.answerText}
+                        /&gt;
+                        {answerOption.answerText}
+                    &lt;/label&gt;
+                );
+            })}
+        &lt;/fieldset&gt;
     );
 };
 &nbsp;
@@ -211,7 +259,7 @@ export default QuestionBlock;
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage automatically generated by Xabier Lameiro on 7/26/2026, 9:38:19 AM
+                Code coverage automatically generated by Xabier Lameiro on 7/27/2026, 7:15:43 AM
         <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
