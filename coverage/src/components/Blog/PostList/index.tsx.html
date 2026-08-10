@@ -29,9 +29,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">77.77% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/9</span>
+                <span class='fraction'>7/9</span>
             </div>
         
             
@@ -116,7 +116,10 @@
 <a name='L52'></a><a href='#L52'>52</a>
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -139,49 +142,66 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import styles from './post.module.css';
 import Link from 'next/link';
 &nbsp;
+type PostListItem = {
+    meta: {
+        title: string;
+        excerpt: string;
+        slug: string;
+    };
+};
+&nbsp;
 type Props = {
-    posts?: {
-        meta: {
-            title: string;
-            excerpt: string;
-            slug: string;
-        };
-    }[];
+    posts?: PostListItem[];
     slug?: string | string[];
+    /**
+     * The taxonomy segment currently being browsed — a category on a canonical URL, a tag on a
+     * faceted one. Links are built from it so the segment survives a click, which is what keeps the
+     * sidebar highlighting the tag you opened.
+     *
+     * #186 built these from each post's own category instead, to stop the tag listing minting a
+     * faceted duplicate per post. It did stop that, and it also broke the feature: clicking a post
+     * inside a tag listing moved the selection to that post's *category*, so the tag you were
+     * browsing deselected itself and there was no way to walk a tag. Reverted — the duplicate URLs
+     * were the price of this menu working, and the real fix is to stop carrying taxonomy in the path
+     * at all rather than to make the links disagree with the page you are on.
+     */
     category?: string | string[];
 };
 /**
@@ -190,7 +210,7 @@ type Props = {
  *
  * @param {object[]} posts - The list of posts
  * @param {string} slug - The slug is used to highlight the selected post
- * @param {string} category - The category is used to highlight the selected post
+ * @param {string} category - The taxonomy segment being browsed, preserved in every link
  * @returns {JSX.Element}
  */
 const PostList = ({ posts, slug, category }: Props) =&gt; {
@@ -201,25 +221,14 @@ const PostList = ({ posts, slug, category }: Props) =&gt; {
 &nbsp;
     return (
         &lt;ul data-testid="post-list" className={styles.list}&gt;
-            {posts.map(
-                (
-                    item: {
-                        meta: {
-                            title: string;
-                            excerpt: string;
-                            slug: string;
-                        };
-                    },
-                    index: number
-                ) =&gt; (
-                    &lt;li key={index} className={slug == item.meta.slug ? styles.selected : <span class="branch-1 cbranch-no" title="branch not covered" >''}&gt;</span>
-                        &lt;Link href={`/blog/${category}/${item.meta.slug}`} title={item.meta.title}&gt;
-                            &lt;div className={styles.title}&gt;{item.meta.title}&lt;/div&gt;
-                            &lt;div className={styles.excerpt}&gt;{item.meta.excerpt}&lt;/div&gt;
-                        &lt;/Link&gt;
-                    &lt;/li&gt;
-                )
-            )}
+            {posts.map((item: PostListItem, index: number) =&gt; (
+                &lt;li key={index} className={slug == item.meta.slug ? styles.selected : ''}&gt;
+                    &lt;Link href={`/blog/${category}/${item.meta.slug}`} title={item.meta.title}&gt;
+                        &lt;div className={styles.title}&gt;{item.meta.title}&lt;/div&gt;
+                        &lt;div className={styles.excerpt}&gt;{item.meta.excerpt}&lt;/div&gt;
+                    &lt;/Link&gt;
+                &lt;/li&gt;
+            ))}
         &lt;/ul&gt;
     );
 };
@@ -229,7 +238,7 @@ export default PostList;
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage automatically generated by Xabier Lameiro on 8/3/2026, 7:15:27 AM
+                Code coverage automatically generated by Xabier Lameiro on 8/10/2026, 6:34:25 AM
         <script src="../../../../prettify.js"></script>
         <script>
             window.onload = function () {
