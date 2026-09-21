@@ -1,0 +1,297 @@
+
+<!doctype html>
+<html lang="en">
+
+<head><meta name="robots" content="noindex">
+    <title>Code coverage by Xabier Lameiro</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+<link rel="shortcut icon" type="image/x-icon" href="https://pre.xabierlameiro.com/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'><h1><a href='/'>Return</a></h1></h1><h1><a href='/'>All tests</a></a> / <a href="index.html">src/helpers</a> legacyFacetRedirects.ts</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">92.3% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>24/26</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">50% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>3/6</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>3/3</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">95.65% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>22/23</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line high'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">47x</span>
+<span class="cline-any cline-yes">47x</span>
+<span class="cline-any cline-yes">47x</span>
+<span class="cline-any cline-yes">95x</span>
+<span class="cline-any cline-yes">95x</span>
+<span class="cline-any cline-yes">95x</span>
+<span class="cline-any cline-yes">95x</span>
+<span class="cline-any cline-yes">95x</span>
+<span class="cline-any cline-yes">95x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">95x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">91x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import * as z from 'zod/mini';
+import { postPath } from './postPath.ts';
+&nbsp;
+/**
+ * tag-facets-as-query-param, step 3. Before `?tag=`, every post was also reachable at
+ * /blog/&lt;tag&gt;/&lt;slug&gt; for each of its tags. Those URLs are still crawled and linked from outside, so
+ * each one gets a permanent redirect to the post's own category path, carrying the tag as `?tag=` so a
+ * reader who follows an old link lands with the same tag selected.
+ *
+ * Sources carry no locale prefix on purpose: with i18n, Next prefixes `source` and `destination` for
+ * every locale, which is what makes the default locale match (see the note on `redirects` in
+ * next.config.ts). A tag + slug pair therefore has to map to one destination across locales, and no
+ * source may equal a real post URL in any locale; the tests pin both.
+ *
+ * The `?tag=` rewrite in src/middleware.ts serves /blog/&lt;category&gt;/&lt;slug&gt;?tag= from this same
+ * /blog/&lt;tag&gt;/&lt;slug&gt; path, and these redirects DO match that path, data route included
+ * (`/_next/data/&lt;build&gt;/blog/&lt;tag&gt;/&lt;slug&gt;.json` answers 308). They do not loop because redirects run
+ * before middleware: the browser and the Pages Router client only ever request the visible
+ * /blog/&lt;category&gt;/&lt;slug&gt;?tag= URL, which is no redirect source, and the middleware rewrites it after
+ * the redirects have been checked. Moving that rewrite back into next.config.ts `rewrites` would
+ * break this: the client resolves config rewrites itself, would fetch the redirected path, and every
+ * tag click would bounce. e2e/tag-navigation exercises exactly this transition, so run it against a
+ * deployment after any change to the middleware or its matcher.
+ *
+ * Slugs are percent-encoded in `source` because the matcher compares against the encoded request
+ * path: with a raw `ñ` the Galician post's tag URL answered 200 instead of redirecting.
+ */
+&nbsp;
+const facetFrontmatterSchema = z.object({
+    slug: z.string(),
+    category: z.string(),
+    tags: z.optional(z.array(z.string())),
+});
+&nbsp;
+export type FacetRedirect = { source: string; destination: string; permanent: true };
+&nbsp;
+/**
+ * @description One permanent redirect per legacy tag URL in the corpus.
+ * @param postsDir - The directory holding the `.mdx` posts (`data/blog`).
+ * @returns Redirects from /blog/&lt;tag&gt;/&lt;slug&gt; to /blog/&lt;category&gt;/&lt;slug&gt;?tag=&lt;tag&gt;.
+ */
+export const legacyFacetRedirects = (postsDir: string): FacetRedirect[] =&gt; {
+    const destinationBySource = new Map&lt;string, string&gt;();
+    const files = fs
+        .readdirSync(postsDir, { recursive: true })
+        .map(String)
+        .filter((file) =&gt; file.endsWith('.mdx'));
+&nbsp;
+    for (const file of files) {
+        const frontmatter = facetFrontmatterSchema.parse(matter(fs.readFileSync(path.join(postsDir, file), 'utf8')).data);
+        const category = frontmatter.category.toLowerCase();
+        for (const tag of frontmatter.tags ?? <span class="branch-1 cbranch-no" title="branch not covered" >[])</span> {
+            const segment = tag.toLowerCase();
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (segment === category) <span class="cstat-no" title="statement not covered" >continue;</span>
+            const source = `/blog/${segment}/${encodeURIComponent(frontmatter.slug)}`;
+            const destination = postPath(frontmatter, segment);
+            const existing = destinationBySource.get(source);
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (existing &amp;&amp; existing !== destination) {
+<span class="cstat-no" title="statement not covered" >                throw new Error(</span>
+                    `Legacy tag URL ${source} would redirect to both ${existing} and ${destination}: two locales share ` +
+                        'this slug with different categories. Give one of them its own slug before building.'
+                );
+            }
+            destinationBySource.set(source, destination);
+        }
+    }
+&nbsp;
+    return [...destinationBySource].map(([source, destination]) =&gt; ({ source, destination, permanent: true }));
+};
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage automatically generated by Xabier Lameiro on 9/21/2026, 6:30:44 AM
+        <script src="../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
+    </body>
+</html>
+    
