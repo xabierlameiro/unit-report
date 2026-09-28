@@ -134,7 +134,16 @@
 <a name='L70'></a><a href='#L70'>70</a>
 <a name='L71'></a><a href='#L71'>71</a>
 <a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -165,6 +174,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -183,28 +201,28 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">65x</span>
+<span class="cline-any cline-yes">67x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">47x</span>
-<span class="cline-any cline-yes">47x</span>
-<span class="cline-any cline-yes">47x</span>
-<span class="cline-any cline-yes">95x</span>
-<span class="cline-any cline-yes">95x</span>
-<span class="cline-any cline-yes">95x</span>
-<span class="cline-any cline-yes">95x</span>
-<span class="cline-any cline-yes">95x</span>
-<span class="cline-any cline-yes">95x</span>
+<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-yes">97x</span>
+<span class="cline-any cline-yes">97x</span>
+<span class="cline-any cline-yes">97x</span>
+<span class="cline-any cline-yes">97x</span>
+<span class="cline-any cline-yes">97x</span>
+<span class="cline-any cline-yes">97x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">95x</span>
+<span class="cline-any cline-yes">97x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">91x</span>
+<span class="cline-any cline-yes">93x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import fs from 'fs';
 import path from 'path';
@@ -215,8 +233,17 @@ import { postPath } from './postPath.ts';
 /**
  * tag-facets-as-query-param, step 3. Before `?tag=`, every post was also reachable at
  * /blog/&lt;tag&gt;/&lt;slug&gt; for each of its tags. Those URLs are still crawled and linked from outside, so
- * each one gets a permanent redirect to the post's own category path, carrying the tag as `?tag=` so a
- * reader who follows an old link lands with the same tag selected.
+ * each one gets a permanent redirect to the post's own category path.
+ *
+ * gsc-indexing-hygiene D1: the destination used to carry the tag as `?tag=&lt;tag&gt;`, so a reader
+ * following an old link landed with the same tag selected. That was the wrong trade. `robots.txt`
+ * disallowed `/*?tag=`, so every one of these permanent redirects pointed at a URL Googlebot was
+ * forbidden to fetch — confirmed by URL Inspection on 2026-09-23, which reported
+ * /blog/error/npm-token-solution-error?tag=ci as "URL is unknown to Google", crawled Never, while
+ * its legacy source had been crawled on 2026-09-15. A 308 whose target cannot be read consolidates
+ * nothing. The destination is now the canonical URL itself, which is also the shortest possible
+ * chain; the `Disallow` came out of robots.txt in the same change, because the `?tag=` URLs the tag
+ * listings link internally carry a rel=canonical that a blocked crawler can never read.
  *
  * Sources carry no locale prefix on purpose: with i18n, Next prefixes `source` and `destination` for
  * every locale, which is what makes the default locale match (see the note on `redirects` in
@@ -248,7 +275,7 @@ export type FacetRedirect = { source: string; destination: string; permanent: tr
 /**
  * @description One permanent redirect per legacy tag URL in the corpus.
  * @param postsDir - The directory holding the `.mdx` posts (`data/blog`).
- * @returns Redirects from /blog/&lt;tag&gt;/&lt;slug&gt; to /blog/&lt;category&gt;/&lt;slug&gt;?tag=&lt;tag&gt;.
+ * @returns Redirects from /blog/&lt;tag&gt;/&lt;slug&gt; to /blog/&lt;category&gt;/&lt;slug&gt;.
  */
 export const legacyFacetRedirects = (postsDir: string): FacetRedirect[] =&gt; {
     const destinationBySource = new Map&lt;string, string&gt;();
@@ -264,7 +291,7 @@ export const legacyFacetRedirects = (postsDir: string): FacetRedirect[] =&gt; {
             const segment = tag.toLowerCase();
             <span class="missing-if-branch" title="if path not taken" >I</span>if (segment === category) <span class="cstat-no" title="statement not covered" >continue;</span>
             const source = `/blog/${segment}/${encodeURIComponent(frontmatter.slug)}`;
-            const destination = postPath(frontmatter, segment);
+            const destination = postPath(frontmatter);
             const existing = destinationBySource.get(source);
             <span class="missing-if-branch" title="if path not taken" >I</span>if (existing &amp;&amp; existing !== destination) {
 <span class="cstat-no" title="statement not covered" >                throw new Error(</span>
@@ -283,7 +310,7 @@ export const legacyFacetRedirects = (postsDir: string): FacetRedirect[] =&gt; {
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage automatically generated by Xabier Lameiro on 9/21/2026, 6:30:44 AM
+                Code coverage automatically generated by Xabier Lameiro on 9/28/2026, 6:33:13 AM
         <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
