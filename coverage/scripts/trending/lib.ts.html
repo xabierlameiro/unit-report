@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
-<link rel="shortcut icon" type="image/x-icon" href="https://pre.xabierlameiro.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pre.xabierlameiro.com/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
@@ -29,9 +29,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.96% </span>
+                <span class="strong">63.55% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>71/111</span>
+                <span class='fraction'>75/118</span>
             </div>
         
             
@@ -858,9 +858,9 @@ export type NormalizedItem = {
 /** The subset `scoreItem` actually reads — callers may pass richer objects. */
 export type ScoreInput = {
     title: string;
-    tags?: string | undefined;
+    tags?: string;
     popularity: number;
-    createdAt?: string | undefined;
+    createdAt?: string;
 };
 &nbsp;
 /**
@@ -1015,7 +1015,7 @@ export const normalize = {
             evidence: `${article.positive_reactions_count ?? <span class="branch-1 cbranch-no" title="branch not covered" >0} </span>reactions, ${article.comments_count ?? <span class="branch-1 cbranch-no" title="branch not covered" >0} </span>comments`,
             popularity: (article.positive_reactions_count ?? <span class="branch-1 cbranch-no" title="branch not covered" >0) + (a</span>rticle.comments_count ?? <span class="branch-1 cbranch-no" title="branch not covered" >0),</span>
             createdAt: article.published_at,
-            tags: (article.tag_list ?? <span class="branch-1 cbranch-no" title="branch not covered" >[]</span>).join(' '),
+            tags: (article.tag_list ?? <span class="branch-1 cbranch-no" title="branch not covered" >[])</span>.join(' '),
         })),
     reddit: (json: unknown): NormalizedItem[] =&gt;
         parsePayload(redditPayloadSchema, 'reddit', json).data.children.map(({ data }) =&gt; ({
@@ -1035,7 +1035,7 @@ export const normalize = {
             evidence: `${repo.stargazers_count ?? <span class="branch-1 cbranch-no" title="branch not covered" >0} </span>stars since ${repo.created_at?.slice(0, 10)}`,
             popularity: repo.stargazers_count ?? <span class="branch-1 cbranch-no" title="branch not covered" >0,</span>
             createdAt: repo.created_at,
-            tags: (repo.topics ?? <span class="branch-1 cbranch-no" title="branch not covered" >[]</span>).join(' '),
+            tags: (repo.topics ?? <span class="branch-1 cbranch-no" title="branch not covered" >[])</span>.join(' '),
         })),
     // Recurring/evergreen developer pain in the stack's own repos (SDD-011). Recency is
     // keyed off `updated_at`, not `created_at`: a valuable recurring issue is old but
@@ -1046,7 +1046,7 @@ export const normalize = {
             .map((issue) =&gt; {
                 const repo = (issue.repository_url ?? <span class="branch-1 cbranch-no" title="branch not covered" >''</span>).split('/repos/')[1] ?? <span class="branch-1 cbranch-no" title="branch not covered" >'';</span>
                 const reactions = issue.reactions?.total_count ?? <span class="branch-1 cbranch-no" title="branch not covered" >0;</span>
-                const labels = (issue.labels ?? <span class="branch-1 cbranch-no" title="branch not covered" >[]</span>).map((label) =&gt;
+                const labels = (issue.labels ?? <span class="branch-1 cbranch-no" title="branch not covered" >[])</span>.map((label) =&gt;
                     typeof label === 'string' ? <span class="branch-0 cbranch-no" title="branch not covered" >label : (l</span>abel?.name ?? <span class="branch-1 cbranch-no" title="branch not covered" >''),</span>
                 );
                 return {
@@ -1068,7 +1068,7 @@ export const dedupeByUrl = &lt;T extends { url: string; score: number }&gt;(item
     const byUrl = new Map&lt;string, T&gt;();
     for (const item of items) {
         const existing = byUrl.get(item.url);
-        if (!existing || item.score &gt; existing.score) byUrl.set(item.url, item);
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!existing || item.score &gt; existing.score) byUrl.set(item.url, item);
     }
     return [...byUrl.values()];
 };
@@ -1148,7 +1148,7 @@ export const buildReport = (
         );
     });
 &nbsp;
-    if (risingQueries.length &gt; 0) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (risingQueries.length &gt; 0) {
         lines.push('## Rising queries on your own GSC (28d vs previous 28d)', '');
         risingQueries.forEach(({ query, delta, impressions }) =&gt;
             lines.push(`- \`${query}\` — +${delta} impressions (now ${impressions})`),
@@ -1156,7 +1156,7 @@ export const buildReport = (
         lines.push('');
     }
 &nbsp;
-    if (recentRepos.length &gt; 0) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (recentRepos.length &gt; 0) {
         lines.push('## Your recently pushed repos (angle material)', '');
         recentRepos.forEach(({ name, url, pushedAt }) =&gt;
             lines.push(`- [${name}](${url}) — last push ${pushedAt?.slice(0, 10)}`),
@@ -1171,7 +1171,7 @@ export const buildReport = (
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage automatically generated by Xabier Lameiro on 10/19/2026, 6:29:52 AM
+                Code coverage automatically generated by Xabier Lameiro on 10/26/2026, 6:30:02 AM
         <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
